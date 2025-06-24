@@ -44,6 +44,10 @@ public class Produto {
         return imagem;
     }
 
+    public boolean getPromocao(){
+        return promocao;
+    }
+
     public void setDescricao(String descricao) {
         if (descricao == null || descricao.isEmpty())
             throw new IllegalArgumentException("Descrição não pode ser nula.");
@@ -57,6 +61,12 @@ public class Produto {
         if(preco < 0)
             throw new IllegalArgumentException("Preço negativo.");
         this.preco = preco;
+    }
+
+    public void setPrecoPromocional(double preco) {
+        if(preco < 0)
+            throw new IllegalArgumentException("Preço negativo.");
+        this.precoPromocional = preco;
     }
 
     public void setImagem(String nome) {
@@ -109,9 +119,13 @@ public class Produto {
         return true;
     }
 
+    public void ativarPromocao(){
+        this.promocao = true;
+    }
+
     public void ativarPromocao(double valor){
         this.promocao = true;
-        precoPromocional = valor;
+        setPrecoPromocional(valor);
     }
 
     public void desativarPromocao(){
