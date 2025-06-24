@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         int input;
+        final int finalizar = 4;
 
         imprimirMenu();
         do{
@@ -25,7 +26,7 @@ public class Main {
                     salvarPagina();
                     break;
 
-                case 04:
+                case finalizar:
                     System.out.println("\nfinalizando...");
                     break;
 
@@ -33,7 +34,7 @@ public class Main {
                     System.out.println("opção inválida!\n");
                     break;
             }
-        }while(input != 4);
+        }while(input != finalizar);
     }
 
     private static void imprimirMenu(){
@@ -41,10 +42,8 @@ public class Main {
 
         System.out.println("1. Adicionar produto;");
         System.out.println("2. Alterar preço;");
-        System.out.println("3. Salvar páginas;");
-        System.out.println("4. Iniciar promoção;");
-        System.out.println("5. Encerrar promoção;");
-        System.out.println("6. Finalizar;");
+        System.out.println("3. Salvar página;");
+        System.out.println("4. Finalizar;");
 
         System.out.println();
     }
@@ -99,6 +98,22 @@ public class Main {
         if(produto < 1 || produto > paginas[pagina - 1].getNumProdutos()){
             System.out.println("Indice de produto inválido!");
             return;
+        }
+
+        if(paginas[pagina - 1].getPromocaoProduto(produto - 1)) {
+            scanner.nextLine();
+            System.out.println("Produto em promoção, deseja encerrá-la? (s/n) ");
+            char input = scanner.nextLine().charAt(0);
+
+            if(input == 's')
+                paginas[pagina-1].desativarPromocaoProduto(produto - 1);
+        }else{
+            scanner.nextLine();
+            System.out.println("Iniciar uma promoção? (s/n) ");
+            char input = scanner.nextLine().charAt(0);
+
+            if(input == 's')
+                paginas[pagina-1].ativarPromocaoProduto(produto - 1);
         }
 
         try{
