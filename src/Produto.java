@@ -18,12 +18,6 @@ public class Produto {
     private BufferedImage imagem;
 
     public Produto(String descricao, double preco, String nomeImagem) {
-        if(descricao.isEmpty() || nomeImagem.isEmpty())
-            throw new IllegalArgumentException("Texto vazio.");
-
-        if(preco < 0)
-            throw new IllegalArgumentException("Preço negativo.");
-
         produtoID = proximoID++;
         setDescricao(descricao);
         setPreco(preco);
@@ -51,7 +45,7 @@ public class Produto {
     }
 
     public void setDescricao(String descricao) {
-        if (descricao == null)
+        if (descricao == null || descricao.isEmpty())
             throw new IllegalArgumentException("Descrição não pode ser nula.");
         if (descricao.length() > 100)
             throw new IllegalArgumentException("A descrição deve ter até 100 caracteres.");
@@ -60,6 +54,8 @@ public class Produto {
     }
 
     public void setPreco(double preco) {
+        if(preco < 0)
+            throw new IllegalArgumentException("Preço negativo.");
         this.preco = preco;
     }
 
@@ -67,7 +63,7 @@ public class Produto {
         try {
             imagem = ImageIO.read(new File(nome));
         } catch (IOException e) {
-            System.out.println("Erro ao carregar imagem: " + e.getMessage());
+            System.out.println("Erro ao carregar imagem!");
             imagem = null;
         }
     }
