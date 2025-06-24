@@ -1,4 +1,5 @@
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
@@ -20,10 +21,11 @@ public class Produto {
         produtoID = proximoID++;
         setDescricao(descricao);
         setPreco(preco);
-        imagem = carregarImagem(nomeImagem);
+        setImagem(nomeImagem);
         avaliacoes = new Avaliacao[MAX_AVALIACOES];
         qntdAvaliacoes = 0;
         precoPromocional = 0;
+        promocao = false;
     }
 
     public String getDescricao() {
@@ -43,6 +45,11 @@ public class Produto {
     }
 
     public void setDescricao(String descricao) {
+        if (descricao == null)
+            throw new IllegalArgumentException("Descrição não pode ser nula.");
+        if (descricao.length() > 100)
+            throw new IllegalArgumentException("A descrição deve ter até 100 caracteres.");
+
         this.descricao = descricao;
     }
 
@@ -50,15 +57,31 @@ public class Produto {
         this.preco = preco;
     }
 
-    public BufferedImage carregarImagem(String nome) {
-        BufferedImage imagem = null;
+    public void setImagem(String nome) {
         try {
             imagem = ImageIO.read(new File(nome));
-            return imagem;
         } catch (IOException e) {
-            System.err.println("Erro ao carregar a imagem. " + e.getMessage());
-            return null;
+            System.out.println("Erro ao carregar imagem: " + e.getMessage());
+            imagem = null;
         }
+    }
+
+    public void mostrarImagem() {
+        if (imagem == null) {
+            System.out.println("Nenhuma imagem carregada.");
+            return;
+        }
+
+        ImageIcon icone = new ImageIcon(imagem);
+        JLabel label = new JLabel(icone);
+        JFrame frame = new JFrame(String.format("Produto %02d: %s", produtoID, descricao));
+
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.getContentPane().add(label);
+        frame.pack();
+        frame.setSize(600, 400);
+//        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 
     public void salvarInformacoes(String nome) {
@@ -70,42 +93,63 @@ public class Produto {
         } catch (IOException e) {
             System.out.println("Erro ao salvar as operações: " + e.getMessage());
         }
-
     }
 
     public boolean adicionarAvaliacao(String autor, String analise, double nota){
         if(qntdAvaliacoes >= MAX_AVALIACOES)
             return false;
-
         try {
-            avaliacoes[qntdAvaliacoes++] = new Avaliacao(autor, analise, nota);
+            Avaliacao av = new Avaliacao(autor, analise, nota);
+            avaliacoes[qntdAvaliacoes++] = av;
         } catch(IllegalArgumentException ae){
             System.out.println("Erro! " + ae.getMessage());
         }
-
         return true;
     }
 
-    public void setPromocao(boolean promocao, double valor){
-        if(!promocao)
-            return;
-
-        precoPromocional = valor;
+    public void ativarPromocao(double valor){
         this.promocao = true;
+        precoPromocional = valor;
     }
 
-    public void setPromocao(boolean promocao){
-        if(promocao)
-            return;
-
+    public void desativarPromocao(){
         this.promocao = false;
     }
 
-    public String toString () {
-        String s = String.format("PRODUTO %02d:\n%s\nR$ %.2f\n\n", produtoID, descricao, preco);
+    public double mediaAvaliacoes() {
+        double soma = 0;
         for (int i = 0; i < qntdAvaliacoes; i++) {
-            s+= avaliacoes[i].toString();
+            soma += avaliacoes[i].getNota();
         }
+        return soma/qntdAvaliacoes;
+    }
+
+    public String toString () {
+        String s = String.format("___________________________\n" +
+                "PRODUTO %02d: %s\n", produtoID, descricao);
+
+        if (promocao)
+            s += String.format("Preço: [R$ %.2f] -> R$ %.2f\n\n", preco, precoPromocional);
+        else
+            s += String.format("Preço: R$ %.2f\n\n", preco);
+
+        if (qntdAvaliacoes == 1)
+            s += String.format("(%d avaliação) ", qntdAvaliacoes);
+        else
+            s += String.format(" ", qntdAvaliacoes);
+
+        for (int i = 0; i < 5; i++) {
+            if (i < (int) Math.round(mediaAvaliacoes()))
+                s += "★";
+            else
+                s += "☆";
+        }
+
+        s += "\n\n";
+
+        for (int i = 0; i < qntdAvaliacoes; i++)
+            s += avaliacoes[i].toString();
+
         return s;
     }
 }
