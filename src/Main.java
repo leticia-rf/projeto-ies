@@ -49,7 +49,7 @@ public class Main {
 
     private static int lerOpcao(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("> ");
+        System.out.print("> ");
 
         return scanner.nextInt();
     }
@@ -89,6 +89,10 @@ public class Main {
         System.out.println("Preço: ");
         preco = scanner.nextDouble();
 
-        paginas[numPaginas - 1].adicionarProduto(new Produto(descricao, preco, imagem));
+        try {
+            paginas[numPaginas - 1].adicionarProduto(new Produto(descricao, preco, imagem));
+        }catch (IllegalArgumentException ae){
+            System.out.println("Produto inválido: " + ae.getMessage());
+        }
     }
 }
