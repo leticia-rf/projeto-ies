@@ -23,7 +23,7 @@ public class Main {
                     break;
 
                 case 03:
-                    salvarPagina();
+                    salvarPaginas();
                     break;
 
                 case finalizar:
@@ -42,7 +42,7 @@ public class Main {
 
         System.out.println("1. Adicionar produto;");
         System.out.println("2. Alterar preço;");
-        System.out.println("3. Salvar página;");
+        System.out.println("3. Salvar páginas;");
         System.out.println("4. Finalizar;");
 
         System.out.println();
@@ -127,7 +127,12 @@ public class Main {
         }
     }
 
-    private static void salvarPagina(){
+    private static void salvarPaginas(){
+        if(numPaginas == 0)
+            System.out.println("Ainda não há páginas!");
+        else
+            for(int i = 0; i < numPaginas; i++)
+                paginas[i].salvarPagina();
     }
 
     private static boolean criarPagina(){
