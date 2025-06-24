@@ -62,6 +62,52 @@ public class Main {
     }
 
     private static void alterarPreco(){
+        double preco;
+        int pagina, produto;
+
+        if(numPaginas == 0) {
+            System.out.println("Ainda não há produtos.");
+            return;
+        }
+
+        Scanner scanner = new Scanner(System.in);
+
+        if(numPaginas > 1)
+            System.out.printf("Página do produto (disponíveis: 01 ~ %02d): ", numPaginas);
+        else
+            System.out.printf("Página do produto (disponível: 01): ");
+        pagina = scanner.nextInt();
+
+        if(pagina <  1 || pagina > numPaginas) {
+            System.out.println("Indice de página inválido!");
+            return;
+        }
+
+        if(paginas[pagina - 1].getNumProdutos() == 0) {
+            System.out.println("Essa página está vazia.");
+            return;
+        }
+
+        if(paginas[pagina - 1].getNumProdutos() > 1)
+            System.out.printf("Indice do produto (disponíveis: 01 ~ %02d): ", paginas[pagina - 1].getNumProdutos());
+        else
+            System.out.printf("Indice do produto (disponível: 01): ");
+        produto = scanner.nextInt();
+
+        if(produto < 1 || produto > paginas[pagina - 1].getNumProdutos()){
+            System.out.println("Indice de produto inválido!");
+            return;
+        }
+
+        try{
+            System.out.println("Novo preço: ");
+            preco = scanner.nextDouble();
+            paginas[pagina - 1].alterarPrecoProduto(produto - 1, preco);
+
+            System.out.println("\nAlterado com sucesso!");
+        }catch (IllegalArgumentException ae){
+            System.out.println("Erro! " + ae.getMessage());
+        }
     }
 
     private static void salvarPagina(){
