@@ -27,4 +27,8 @@ public class Pagina {
     public int getNumProdutos(){
         return numProdutos;
     }
+
+    public static int getMaximoProdutos(){
+        return MAX_PRODUTOS;
+    }
 }
