@@ -18,6 +18,9 @@ public class Produto {
     private BufferedImage imagem;
 
     public Produto(String descricao, double preco, String nomeImagem) {
+        if(descricao.isEmpty() || nomeImagem.isEmpty() || preco < 0)
+            throw new IllegalArgumentException();
+
         produtoID = proximoID++;
         setDescricao(descricao);
         setPreco(preco);
