@@ -50,7 +50,7 @@ public class Main {
 
     private static int lerOpcao(){
         Scanner scanner = new Scanner(System.in);
-        System.out.print("> ");
+        System.out.print("\n> ");
 
         return scanner.nextInt();
     }
