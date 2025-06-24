@@ -39,4 +39,24 @@ public class Pagina {
         produtos[indice].setPreco(preco);
     }
 
+    public boolean getPromocaoProduto(int indice){
+        if(indice < 0 || indice >= numProdutos)
+            throw new IllegalArgumentException("Indice de produto inválido.");
+
+        return produtos[indice].getPromocao();
+    }
+
+    public void ativarPromocaoProduto(int indice){
+        if(indice < 0 || indice >= numProdutos)
+            throw new IllegalArgumentException("Indice de produto inválido.");
+
+        produtos[indice].ativarPromocao();
+    }
+
+    public void desativarPromocaoProduto(int indice){
+        if(indice < 0 || indice >= numProdutos)
+            throw new IllegalArgumentException("Indice de produto inválido.");
+
+        produtos[indice].desativarPromocao();
+    }
 }
