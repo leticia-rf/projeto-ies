@@ -132,7 +132,7 @@ public class Main {
             System.out.println("Ainda não há páginas!");
         else
             for(int i = 0; i < numPaginas; i++)
-                paginas[i].salvarPagina();
+                paginas[i].salvarProdutos();
     }
 
     private static boolean criarPagina(){

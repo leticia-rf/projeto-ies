@@ -59,9 +59,4 @@ public class Pagina {
 
         produtos[indice].desativarPromocao();
     }
-
-    public void salvarPagina(){
-        for(int i = 0; i < numProdutos; i++)
-            produtos[i].salvarInformacoes(String.format("pag%02d", paginaID));
-    }
 }
