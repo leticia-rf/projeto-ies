@@ -41,8 +41,10 @@ public class Main {
 
         System.out.println("1. Adicionar produto;");
         System.out.println("2. Alterar preço;");
-        System.out.println("3. Salvar página;");
-        System.out.println("4. Finalizar;");
+        System.out.println("3. Salvar páginas;");
+        System.out.println("4. Iniciar promoção;");
+        System.out.println("5. Encerrar promoção;");
+        System.out.println("6. Finalizar;");
 
         System.out.println();
     }
