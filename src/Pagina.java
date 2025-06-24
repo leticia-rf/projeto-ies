@@ -31,4 +31,12 @@ public class Pagina {
     public static int getMaximoProdutos(){
         return MAX_PRODUTOS;
     }
+
+    public void alterarPrecoProduto(int indice, double preco){
+        if(indice < 0 || indice >= numProdutos)
+            throw new IllegalArgumentException("Indice de produto inválido.");
+
+        produtos[indice].setPreco(preco);
+    }
+
 }
