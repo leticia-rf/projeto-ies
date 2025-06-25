@@ -92,7 +92,7 @@ public class Produto {
         frame.getContentPane().add(label);
         frame.pack();
         frame.setSize(600, 400);
-//        frame.setLocationRelativeTo(null);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
@@ -149,16 +149,20 @@ public class Produto {
         else
             s += String.format("Preço: R$ %.2f\n\n", preco);
 
-        if (qntdAvaliacoes == 1)
+        if (qntdAvaliacoes == 0) {
+            s += "(sem avaliações)";
+        }
+        else if (qntdAvaliacoes == 1)
             s += String.format("(%d avaliação) ", qntdAvaliacoes);
-        else
-            s += String.format(" ", qntdAvaliacoes);
+        else if (qntdAvaliacoes >= 2) {
+            s += String.format("(%d avaliações) ", qntdAvaliacoes);
 
-        for (int i = 0; i < 5; i++) {
-            if (i < (int) Math.round(mediaAvaliacoes()))
-                s += "★";
-            else
-                s += "☆";
+            for (int i = 0; i < 5; i++) {
+                if (i < (int) Math.round(mediaAvaliacoes()))
+                    s += "★";
+                else
+                    s += "☆";
+            }
         }
 
         s += "\n\n";

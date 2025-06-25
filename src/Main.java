@@ -6,60 +6,35 @@ public class Main {
     static Pagina[] paginas = new Pagina[MAX_PAGINAS];
 
     public static void main(String[] args) {
-        int input;
-        final int finalizar = 4;
 
-        imprimirMenu();
-        do{
-            input = lerOpcao();
+        adicionarProduto("1Leite Condensado Piracanjuba 395g", 6.47, "src/imagens/piracanjuba.png");
+        adicionarProduto("2Leite Condensado Piracanjuba 395g", 6.47, "src/imagens/piracanjuba.png");
+        adicionarProduto("3Leite Condensado Piracanjuba 395g", 6.47, "src/imagens/piracanjuba.png");
+        adicionarProduto("4Leite Condensado Piracanjuba 395g", 6.47, "src/imagens/piracanjuba.png");
+        adicionarProduto("5Leite Condensado Piracanjuba 395g", 6.47, "src/imagens/piracanjuba.png");
+        adicionarProduto("6Leite Condensado Piracanjuba 395g", 6.47, "src/imagens/piracanjuba.png");
+        adicionarProduto("7Leite Condensado Piracanjuba 395g", 6.47, "src/imagens/piracanjuba.png");
 
-            switch(input){
-                case 01:
-                    adicionarProduto();
-                    break;
+        Produto p = new Produto("teste", 1.0, "src/imagens/itambe.png");
+        p.salvarInformacoes("pagina2");
 
-                case 02:
-                    alterarPreco();
-                    break;
+        //mostrarImagem(1);
 
-                case 03:
-                    salvarPaginas();
-                    break;
+        salvarPaginas();
 
-                case finalizar:
-                    System.out.println("\nfinalizando...");
-                    break;
 
-                default:
-                    System.out.println("opção inválida!\n");
-                    break;
-            }
-        }while(input != finalizar);
     }
 
-    private static void imprimirMenu(){
-        System.out.println("Menu:\n");
-
-        System.out.println("1. Adicionar produto;");
-        System.out.println("2. Alterar preço;");
-        System.out.println("3. Salvar páginas;");
-        System.out.println("4. Finalizar;");
-
-        System.out.println();
-    }
-
-    private static int lerOpcao(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("\n> ");
-
-        return scanner.nextInt();
-    }
-
-    public static void adicionarProduto(){
+    public static void adicionarProduto(String d, double p, String i){
         if(numProdutos >= numPaginas * Pagina.getMaximoProdutos() && !criarPagina())
             System.out.println("Máximo de produtos atingido!");
         else
-            adicionarProdutoPrivado();
+            try {
+                paginas[numPaginas - 1].adicionarProduto(new Produto(d, p, i));
+                numProdutos++;
+            }catch (IllegalArgumentException ae){
+                System.out.println("Produto inválido: " + ae.getMessage());
+            }
     }
 
     private static void alterarPreco(){
@@ -141,26 +116,5 @@ public class Main {
 
         paginas[numPaginas++] = new Pagina();
         return true;
-    }
-
-    private static void adicionarProdutoPrivado(){
-        Scanner scanner = new Scanner(System.in);
-        String descricao, imagem;
-        double preco;
-
-        System.out.println("Descrição do produto: ");
-        descricao = scanner.nextLine();
-
-        System.out.println("Imagem do produto: ");
-        imagem = scanner.nextLine();
-
-        System.out.println("Preço: ");
-        preco = scanner.nextDouble();
-
-        try {
-            paginas[numPaginas - 1].adicionarProduto(new Produto(descricao, preco, imagem));
-        }catch (IllegalArgumentException ae){
-            System.out.println("Produto inválido: " + ae.getMessage());
-        }
     }
 }
