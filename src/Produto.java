@@ -144,8 +144,10 @@ public class Produto {
         String s = String.format("___________________________\n\n" +
                 "PRODUTO %02d: %s\n", produtoID, descricao);
 
-        if (promocao)
-            s += String.format("PROMOÇÃO! [R$ %.2f] -> R$ %.2f\n\n", preco, precoPromocional);
+        if (promocao) {
+            s += String.format("PROMOÇÃO! [R$ %.2f] -> R$ %.2f", preco, precoPromocional);
+            s += String.format(" (%.0f%% off)\n\n", (preco - precoPromocional)/preco*100);
+        }
         else
             s += String.format("Preço: R$ %.2f\n\n", preco);
 
