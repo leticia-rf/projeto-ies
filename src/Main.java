@@ -39,6 +39,12 @@ public class Main {
         adicionarProduto(p6);
         adicionarProduto(p7);
 
+        /*
+        p1.mostrarImagem();
+        p2.mostrarImagem();
+        p3.mostrarImagem();
+        */
+
         salvarPaginas();
     }
 
