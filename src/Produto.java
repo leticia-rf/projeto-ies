@@ -152,17 +152,17 @@ public class Produto {
         if (qntdAvaliacoes == 0) {
             s += "(sem avaliações)";
         }
-        else if (qntdAvaliacoes == 1)
-            s += String.format("(%d avaliação) ", qntdAvaliacoes);
-        else if (qntdAvaliacoes >= 2) {
-            s += String.format("(%d avaliações) ", qntdAvaliacoes);
+        else{
+            if (qntdAvaliacoes == 1)
+                s += String.format("(%d avaliação) ", qntdAvaliacoes);
+            else
+                s += String.format("(%d avaliações) ", qntdAvaliacoes);
 
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++)
                 if (i < (int) Math.round(mediaAvaliacoes()))
-                    s += "★";
+                    s += "★ ";
                 else
-                    s += "☆";
-            }
+                    s += "☆ ";
         }
 
         s += "\n\n";
