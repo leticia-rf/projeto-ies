@@ -16,20 +16,21 @@ public class Main {
         Produto p7 = new Produto("Leite Condensado Itambé", 7.89, "src/imagens/itambe.png");
 
 
-        p1.adicionarAvaliacao("José da Silva", "Muito doce, adorei", 5);
-        p1.adicionarAvaliacao("Mário", "Muito doce, odiei", 1);
-        p1.adicionarAvaliacao("Luigi", "Meu pudim ficou torto, mas estava bom", 4);
+        p1.adicionarAvaliacao("Gabriel Matheus", "Muito doce adorei :)", 5);
+        p1.adicionarAvaliacao("Mário", "Muito doce, odiei \uD83D\uDC4E", 1);
+        p1.adicionarAvaliacao("Luigi", "meu pudim ficou torto, mas estava bom", 4);
 
-        p2.adicionarAvaliacao("José da Silva", "Piracanjuba é melhor...", 3);
+        p2.adicionarAvaliacao("Gabriel Matheus", "Piracanjuba é melhor...", 3);
 
         p3.adicionarAvaliacao("Otávio Inácio", "Muito enjoativo, não gostei", 1);
 
         p4.ativarPromocao(4.49);
-        p4.adicionarAvaliacao("Ash Ketchum", "Comprei na promoção e não me arrependo", 5);
+        p4.adicionarAvaliacao("Letícia Ramos", "só comprei pq tava na promoção, mas prefiro o moça", 3.5);
 
-        p6.adicionarAvaliacao("Anônimo", "Por esse preço, era de se esperar que mandassem o pudim", 3);
+        p6.adicionarAvaliacao("Anônimo", "Por esse preço eu esperava o pudim junto", 3);
 
-        p7.adicionarAvaliacao("Davi Leal", "Leite incomparável!", 5);
+        p7.adicionarAvaliacao("Davi Leal", "simplesmente incomparável!", 5);
+        p7.adicionarAvaliacao("Rafaela Eduarda", "estou indignada! veio estragado \uD83E\uDD2E queria dar nota 0 mas não tem como", 1);
 
         adicionarProduto(p1);
         adicionarProduto(p2);
