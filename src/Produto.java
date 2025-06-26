@@ -141,7 +141,7 @@ public class Produto {
     }
 
     public String toString () {
-        String s = String.format("___________________________\n" +
+        String s = String.format("___________________________\n\n" +
                 "PRODUTO %02d: %s\n", produtoID, descricao);
 
         if (promocao)

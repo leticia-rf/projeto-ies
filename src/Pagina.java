@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Pagina {
     private int paginaID;
     private static int proximoID = 0;
@@ -12,8 +16,21 @@ public class Pagina {
     }
 
     public void salvarProdutos(){
+        if(numProdutos == 0)
+            return;
+
         for(int i = 0; i < numProdutos; i++)
             produtos[i].salvarInformacoes(String.format("pagina%02d.txt", paginaID));
+
+        try {
+            File f = new File(String.format("pagina%02d.txt", paginaID));
+            FileWriter fw = new FileWriter(f, true);
+            fw.write("___________________________");
+            fw.close();
+        }catch(IOException ioe){
+            System.out.println(ioe.toString());
+        }
+
     }
 
     public boolean adicionarProduto(Produto p){
