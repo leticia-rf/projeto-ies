@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.io.File;
 
 public class Main {
     static int numProdutos = 0, numPaginas = 0;
@@ -45,6 +45,7 @@ public class Main {
         p3.mostrarImagem();
         */
 
+        limparPaginas();
         salvarPaginas();
     }
 
@@ -66,6 +67,19 @@ public class Main {
         else
             for(int i = 0; i < numPaginas; i++)
                 paginas[i].salvarProdutos();
+    }
+
+    private static void limparPaginas(){
+        File f;
+
+        if(numPaginas == 0)
+            System.out.println("Ainda não há páginas!");
+        else
+            for(int i = 0; i < numPaginas; i++){
+                f = new File(String.format("pagina" + "%02d" + ".txt", i));
+                f.delete();
+            }
+
     }
 
     private static boolean criarPagina(){
