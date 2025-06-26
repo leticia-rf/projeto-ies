@@ -137,7 +137,7 @@ public class Produto {
         for (int i = 0; i < qntdAvaliacoes; i++) {
             soma += avaliacoes[i].getNota();
         }
-        return soma/qntdAvaliacoes;
+        return soma / qntdAvaliacoes;
     }
 
     public String toString () {
