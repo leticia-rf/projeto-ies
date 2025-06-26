@@ -119,10 +119,6 @@ public class Produto {
         return true;
     }
 
-    public void ativarPromocao(){
-        this.promocao = true;
-    }
-
     public void ativarPromocao(double valor){
         this.promocao = true;
         setPrecoPromocional(valor);

@@ -15,11 +15,14 @@ public class Main {
         Produto p6 = new Produto("Leite Condensado São Lourenço", 36.00, "src/imagens/saolourenco.png");
         Produto p7 = new Produto("Leite Condensado Itambé", 7.89, "src/imagens/itambe.png");
 
-
         p1.adicionarAvaliacao("Gabriel Matheus", "Muito doce adorei :)", 5);
         p1.adicionarAvaliacao("Mário", "Muito doce, odiei \uD83D\uDC4E", 1);
         p1.adicionarAvaliacao("Luigi", "meu pudim ficou torto, mas estava bom", 4);
 
+        p2.ativarPromocao(6.39);
+        p2.adicionarAvaliacao("Wario", "que bom que consegui aproveitar a promoção", 4.3);
+        p2.desativarPromocao();
+        p2.adicionarAvaliacao("Yoshi", "Perdi a promoção :/ mas comprei mesmo assim", 4);
         p2.adicionarAvaliacao("Gabriel Matheus", "Piracanjuba é melhor...", 3);
 
         p3.adicionarAvaliacao("Otávio Inácio", "Muito enjoativo, não gostei", 1);
@@ -40,11 +43,13 @@ public class Main {
         adicionarProduto(p6);
         adicionarProduto(p7);
 
-        /*
         p1.mostrarImagem();
         p2.mostrarImagem();
         p3.mostrarImagem();
-        */
+        p4.mostrarImagem();
+        p5.mostrarImagem();
+        p6.mostrarImagem();
+        p7.mostrarImagem();
 
         limparPaginas();
         salvarPaginas();
