@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Produto {
     private boolean promocao;
-    private static final int MAX_AVALIACOES = 10;
+    private static final int MAX_AVALIACOES = 100;
     private int produtoID;
     private static int proximoID = 0;
     private String descricao;
@@ -145,7 +145,7 @@ public class Produto {
                 "PRODUTO %02d: %s\n", produtoID, descricao);
 
         if (promocao)
-            s += String.format("Preço: [R$ %.2f] -> R$ %.2f\n\n", preco, precoPromocional);
+            s += String.format("PROMOÇÃO! [R$ %.2f] -> R$ %.2f\n\n", preco, precoPromocional);
         else
             s += String.format("Preço: R$ %.2f\n\n", preco);
 
