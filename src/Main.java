@@ -27,7 +27,7 @@ public class Main {
         p4.ativarPromocao(4.49);
         p4.adicionarAvaliacao("Ash Ketchum", "Comprei na promoção e não me arrependo", 5);
 
-        p6.adicionarAvaliacao("Anônimo", "Pelo preço deveria vim o pudim feito", 3);
+        p6.adicionarAvaliacao("Anônimo", "Por esse preço, era de se esperar que mandassem o pudim", 3);
 
         p7.adicionarAvaliacao("Davi Leal", "Leite incomparável!", 5);
 
