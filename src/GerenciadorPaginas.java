@@ -1,6 +1,6 @@
 import java.io.File;
 
-public class Main {
+public class GerenciadorPaginas {
     static int numProdutos = 0, numPaginas = 0;
     static final int MAX_PAGINAS = 10;
     static Pagina[] paginas = new Pagina[MAX_PAGINAS];
