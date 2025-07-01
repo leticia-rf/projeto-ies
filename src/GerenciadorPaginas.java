@@ -13,7 +13,7 @@ public class GerenciadorPaginas {
         Produto p4 = new Produto("Leite Condensado Camponesa", 8.49, "src/imagens/camponesa.png", 27, 4.4);
         Produto p5 = new Produto("Leite Condensado Moça", 8.98, "src/imagens/nestle.png", 148, 4.7, 4.98);
         Produto p6 = new Produto("Leite Condensado São Lourenço", 36.00, "src/imagens/saolourenco.png", 967, 2.3,29.99);
-        Produto p7 = new Produto("Leite Condensado Itambé", 7.89, "src/imagens/itambe.png", 0, 0);
+        Produto p7 = new Produto("Leite Condensado Itambé muito doce e saboroso, está dentro da validade e muito bem armazenado aqui na minha casa", 7.89, "src/imagens/itambe.png", 0, 0);
 
         inserirProduto(p1);
         inserirProduto(p2);

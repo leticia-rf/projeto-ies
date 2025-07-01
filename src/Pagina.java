@@ -56,9 +56,15 @@ public class Pagina {
     }
 
     private String stringProduto(int indice){
+        String descricao;
         Produto p = produtos[indice];
 
-        String s = String.format("___________________________\n\n" + p.getDescricao() + "\n");
+        descricao = p.getDescricao();
+
+        if(descricao.length() > 100)
+            descricao = descricao.substring(0, 96) + "...";
+
+        String s = String.format("___________________________\n\n" + descricao + "\n");
 
         if (p.getPromocao()) {
             s += String.format("PROMOÇÃO! [R$ %.2f] -> R$ %.2f", p.getPreco(), p.getPrecoPromocional());
