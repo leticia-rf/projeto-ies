@@ -1,10 +1,12 @@
+import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class Pagina {
     private int paginaID;
-    private static int proximoID = 0;
+    private static int proximoID = 1;
     private static final int MAX_PRODUTOS = 5;
     private int numProdutos;
     private Produto[] produtos;
@@ -15,12 +17,25 @@ public class Pagina {
         produtos = new Produto[MAX_PRODUTOS];
     }
 
+    public static int getMaximoProdutos(){
+        return MAX_PRODUTOS;
+    }
+
     public void salvarProdutos(){
         if(numProdutos == 0)
             return;
 
         for(int i = 0; i < numProdutos; i++)
-            produtos[i].salvarInformacoes(String.format("pagina%02d.txt", paginaID));
+        {
+            try {
+                File arquivo = new File(String.format("pagina%02d.txt", paginaID));
+                FileWriter escrever = new FileWriter(String.format("pagina%02d.txt", paginaID), true);
+                escrever.write(stringProduto(i));
+                escrever.close();
+            } catch (IOException e) {
+                System.out.println("Erro ao salvar as operações: " + e.getMessage());
+            }
+        }
 
         try {
             File f = new File(String.format("pagina%02d.txt", paginaID));
@@ -30,7 +45,6 @@ public class Pagina {
         }catch(IOException ioe){
             System.out.println(ioe.toString());
         }
-
     }
 
     public boolean adicionarProduto(Produto p){
@@ -41,12 +55,59 @@ public class Pagina {
         return true;
     }
 
-    public int getNumProdutos(){
-        return numProdutos;
+    private String stringProduto(int indice){
+        Produto p = produtos[indice];
+
+        String s = String.format("___________________________\n\n" + p.getDescricao() + "\n");
+
+        if (p.getPromocao()) {
+            s += String.format("PROMOÇÃO! [R$ %.2f] -> R$ %.2f", p.getPreco(), p.getPrecoPromocional());
+            s += String.format(" (%.0f%% off)\n\n", (p.getPreco() - p.getPrecoPromocional())/p.getPreco()*100);
+        }
+        else
+            s += String.format("Preço: R$ %.2f\n\n", p.getPreco());
+
+        if (p.getQntdAvaliacoes() == 0) {
+            s += "(sem avaliações)";
+        }
+        else{
+            if (p.getQntdAvaliacoes() == 1)
+                s += String.format("(%d avaliação) ", p.getQntdAvaliacoes());
+            else
+                s += String.format("(%d avaliações) ", p.getQntdAvaliacoes());
+
+            for (int i = 0; i < 5; i++)
+                if (i < (int) Math.round(p.getMediaAvaliacoes()))
+                    s += "★ ";
+                else
+                    s += "☆ ";
+        }
+
+        s += "\n\n";
+
+        return s;
     }
 
-    public static int getMaximoProdutos(){
-        return MAX_PRODUTOS;
+    public void mostrarImagens(){
+        for(int i = 0; i < numProdutos; i++){
+            BufferedImage imagem = produtos[i].getImagem();
+
+            if (imagem == null) {
+                System.out.println("Nenhuma imagem carregada.");
+                return;
+            }
+
+            ImageIcon icone = new ImageIcon(imagem);
+            JLabel label = new JLabel(icone);
+            JFrame frame = new JFrame(produtos[i].getDescricao());
+
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.getContentPane().add(label);
+            frame.pack();
+            frame.setSize(600, 400);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        }
     }
 
 }
