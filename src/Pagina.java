@@ -97,8 +97,10 @@ public class Pagina {
     public void mostrarImagens(){
         for(int i = 0; i < numProdutos; i++){
             BufferedImage imagem = produtos[i].getImagem();
+            String nomeImagem = produtos[i].getNomeImagem();
+            String extensao = nomeImagem.substring(nomeImagem.length() - 3, nomeImagem.length());
 
-            if (imagem == null) {
+            if (imagem == null || (!extensao.equals("png") && !extensao.equals("jpg"))) {
                 System.out.println("Nenhuma imagem carregada.");
                 return;
             }

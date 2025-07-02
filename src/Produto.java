@@ -11,11 +11,13 @@ public class Produto {
     private double mediaAvaliacoes;
     private double precoPromocional;
     private BufferedImage imagem;
+    private String nomeImagem;
 
     public Produto(String descricao, double preco, String nomeImagem, int qntdAvaliacoes, double mediaAvaliacoes) {
         this.descricao = descricao;
         this.preco = preco;
         setImagem(nomeImagem);
+        this.nomeImagem = nomeImagem;
         this.qntdAvaliacoes = qntdAvaliacoes;
         precoPromocional = 0;
         this.mediaAvaliacoes = mediaAvaliacoes;
@@ -25,6 +27,7 @@ public class Produto {
         this.descricao = descricao;
         this.preco = preco;
         setImagem(nomeImagem);
+        this.nomeImagem = nomeImagem;
         this.qntdAvaliacoes = qntdAvaliacoes;
         precoPromocional = 0;
         this.mediaAvaliacoes = mediaAvaliacoes;
@@ -54,6 +57,10 @@ public class Produto {
 
     public boolean getPromocao() {
         return promocao;
+    }
+
+    public String getNomeImagem() {
+        return nomeImagem;
     }
 
     public BufferedImage getImagem(){
